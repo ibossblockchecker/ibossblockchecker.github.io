@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://myapps.classlink.com/favicon.ico">
+        <title>My apps</title>
+        <style>
+            #ibbchecker {
+                justify-self: center;
+                width: 75vw;
+                max-height: 300px;
+                border-style: outset;
+                margin-top: 5px;
+                justify-items: center !important;
+            }
+            #ibbchecker div {
+                justify-items: center;
+            }
+            #ibbchecker-text {
+                text-align: center;
+                font-size: 35px;
+            }
+            #ibbcbeta {
+                color: red;
+                font-size: 20px;
+            }
+            #site#check {
+                /*size: 100% !important;*/
+            }
+        </style>
+    </head>
+    <body>
+        <div id="ibbchecker">
+            <p id="ibbchecker-text">
+                iboss block checker
+                <em id="ibbcbeta">beta</em>
+            </p>
+            <div> 
+                <input id="site check" value="http://" size="18.5">
+                <button onclick="checkSite(document.getElementById('site check').value)">check</button>
+                <p id="result"></p>
+            </div>
+            <script>
+                const result = document.getElementById('result');
+                function checkSite(site) {
+                    console.clear();
+                    fetch(site)
+                    .then(response => {
+                        if (response.status == 200) {
+                            result.innerText = 'Unblocked.';
+                        } else if (response.status == 302) {
+                            result.innerText = 'Blocked.';
+                        }
+                    })
+                    .catch(error => console.log(`Error: ${error}`));
+                    result.innerHTML = 'Check dev console. (f12 key/inspect)<hr>If you see 200 (OK) it is unblocked, If you see 302 (found) it is blocked.';
+                }
+            </script>
+        </div>
+        <!--
+            https://lwsd-my.sharepoint.com/:u:/g/personal/1070703_lwsd_org/ERTbUu_nT3ZAoWy9Ybj4VbIBiZklmjvn2ZHWOb9K3P7wAA?e=DZFjw8
+        -->
+    </body>
+</html>
